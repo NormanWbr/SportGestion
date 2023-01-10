@@ -1,9 +1,10 @@
 package be.technifutur.stage;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Personne {
+public class Personne implements Serializable {
     private String nom;
     private String club;
 

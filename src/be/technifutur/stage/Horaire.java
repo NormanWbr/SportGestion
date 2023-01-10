@@ -1,9 +1,10 @@
 package be.technifutur.stage;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Horaire {
+public class Horaire implements Serializable {
     private LocalDate jour;
     private LocalTime debut;
     private LocalTime fin;

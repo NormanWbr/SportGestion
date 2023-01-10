@@ -1,11 +1,12 @@
 package be.technifutur.stage;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Activite {
+public class Activite implements Serializable {
     private String nom;
-    private Map<Personne, Integer> participants = new TreeMap<>();
+    private Map<Integer, Personne> participants = new TreeMap<>();
 
     private  Horaire horaire = new Horaire();
 
@@ -25,12 +26,11 @@ public class Activite {
         this.nom = nom;
     }
 
-    public Map<Personne, Integer> getParticipants() {
+    public Map<Integer, Personne> getParticipants() {
         return participants;
     }
 
-    public void setParticipants(Map<Personne, Integer> participants) {
+    public void setParticipants(Map<Integer, Personne> participants) {
         this.participants = participants;
     }
-
 }
