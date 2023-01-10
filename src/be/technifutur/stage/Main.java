@@ -10,25 +10,11 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Comparator<Activite> comparator = new Comparator<Activite>() {
-            public int compare(Activite a, Activite b) {
-                int comparaison = 0;
-                if (comparaison == 0){
-                    comparaison = a.getHoraire().getJour().compareTo(b.getHoraire().getJour());
-                }
-                if (comparaison == 0){
-                    comparaison = a.getHoraire().getDebut().compareTo(b.getHoraire().getDebut());
-                }
-                if (comparaison == 0){
-                    comparaison = a.getHoraire().getFin().compareTo(b.getHoraire().getFin());
-                }
-                return comparaison;
-            }
-        };
 
         TreeMap<Integer, Activite> liste = new TreeMap<>();
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.bin"))) {
             liste = (TreeMap) in.readObject();
+            System.out.println("Fichier chargé");
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Fichier introuvable");
         }
@@ -91,7 +77,7 @@ public class Main {
             out.writeObject(liste);
             System.out.println("Sauvegarde effectuée");
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("Impsossible de sauvegarder");
         }
     }
 }

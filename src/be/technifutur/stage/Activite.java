@@ -5,6 +5,17 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class Activite implements Serializable {
+
+    private int prix;
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
     private String nom;
     private Map<Integer, Personne> participants = new TreeMap<>();
 

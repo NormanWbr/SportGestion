@@ -24,15 +24,19 @@ public class CreateStageControleur implements StageControleur {
         activite.getHoraire().setDebut(LocalTime.parse(heureDebut));
         String heureFin = input.read("Heure de fin : hh:mm");
         activite.getHoraire().setFin(LocalTime.parse(heureFin));
+        int prix = Integer.parseInt(input.read("Quel est le prix de l'activite"));
+        activite.setPrix(prix);
         liste.put(liste.size(), activite);
     }
 
     @Override
     public void ajouterRepas(TreeMap<Integer, Activite> liste) {
+        final int prix = 10;
         Activite activite = new Activite();
         activite.setNom("Repas");
         String inputJour = input.read("Date : jj/mm/aaaa");
         activite.getHoraire().setJour(LocalDate.parse(inputJour, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        activite.setPrix(prix);
         String time = input.read("1.Matin\n2.Midi\n3.Soir");
         switch (time) {
             case "1" -> {
@@ -54,12 +58,14 @@ public class CreateStageControleur implements StageControleur {
 
     @Override
     public void ajouterLogement(TreeMap<Integer, Activite> liste) {
+        final int prix = 30;
         Activite activite = new Activite();
         activite.setNom("Logement");
         String inputJour = input.read("Date : jj/mm/aaaa");
         activite.getHoraire().setJour(LocalDate.parse(inputJour, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         activite.getHoraire().setDebut(LocalTime.of(21, 00));
         activite.getHoraire().setFin(LocalTime.of(06, 00));
+        activite.setPrix(prix);
         liste.put(liste.size(), activite);
     }
 
@@ -120,12 +126,16 @@ public class CreateStageControleur implements StageControleur {
 
     @Override
     public void listeParticipants(TreeMap<Integer, Activite> liste, int id) {
-        for (Map.Entry<Integer, Personne> entry : liste.get(id).getParticipants().entrySet()) {
-            int key = entry.getKey();
-            Personne value = entry.getValue();
-            System.out.println("ID : " + key);
-            System.out.println("Nom : " + value.getNom());
-            System.out.println("Club : " + value.getClub());
+        if (liste.get(id).getParticipants().size() > 0) {
+            for (Map.Entry<Integer, Personne> entry : liste.get(id).getParticipants().entrySet()) {
+                int key = entry.getKey();
+                Personne value = entry.getValue();
+                System.out.println("ID : " + key);
+                System.out.println("Nom : " + value.getNom());
+                System.out.println("Club : " + value.getClub());
+            }
+        }else{
+            System.out.println("Pas de participant");
         }
     }
 }
